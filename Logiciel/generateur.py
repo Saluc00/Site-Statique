@@ -6,6 +6,3 @@ def convert(md_input, html_output):
 
     html_file = open(html_output, 'w')
     html_file.writelines(html)
-    print(html)
-
-convert('markdown.md', 'page.html')
