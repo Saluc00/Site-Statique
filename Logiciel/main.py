@@ -1,14 +1,17 @@
 import argparse
 import markdown2
 import os
-from jinja2 import Environment, FileSystemLoader
+from mako.template import Template
 
 def convert(md_input, html_output):
     # Ouvre le fichier .md
     input_file = open(md_input, "r")
     html = markdown2.markdown(input_file.read())
     # Genere / Modifie le fichier html
-    html_file = open(html_output, 'w')
+    if '.html' in html_output:
+        html_file = open(html_output, 'w')
+    if '.html' not in html_output:
+        html_file = open(f'{html_output}.html', 'w')
     html_file.writelines(html)
 
 print('''                                                                                                
@@ -37,9 +40,3 @@ else:
 f = open(args.input, 'a')
 f.writelines('\n- - -')
 convert(args.input, args.output)
-
-file_loader = FileSystemLoader('./')
-env = Environment(loader=file_loader)
-template = env.get_template('template.html')
-html_file = open(args.output, 'r')
-output = template.render(md=html_file.read())
