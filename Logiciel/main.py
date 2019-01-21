@@ -1,7 +1,6 @@
 import argparse
 import markdown2
 import os
-from mako.template import Template
 
 def convert(md_input, html_output):
     # Ouvre le fichier .md
@@ -38,5 +37,4 @@ elif args.input and args.output:
 else:
     pass
 f = open(args.input, 'a')
-f.writelines('\n- - -')
 convert(args.input, args.output)
