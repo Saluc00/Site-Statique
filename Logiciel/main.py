@@ -1,11 +1,18 @@
 import argparse
 import markdown2
 import os
+import re
+
+link_patterns=[(re.compile(r'((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+(:[0-9]+)?|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)'),r'\1')]
+
+
+head = 
+
 
 def convert(md_input, html_output):
     # Ouvre le fichier .md
     input_file = open(md_input, "r")
-    html = markdown2.markdown(input_file.read())
+    html = markdown2.markdown(input_file.read(), extras=["link-patterns"] ,link_patterns=link_patterns)
     # Genere / Modifie le fichier html
     if '.html' in html_output:
         html_file = open(html_output, 'w')
@@ -33,7 +40,7 @@ args = parser.parse_args()
 if False:
     print('Merci d"inscrire "-i [VOTRE FICHIER .MD] -u [NOM DU FICHIER HTML]"')
 elif args.input and args.output:
-    print('md : ' + args.input + ' html : ' + args.output)
+    print('Confirmation de la conversion du fichier : ' + args.input + ' Markdown en fichier html : ' + args.output + '\n\n\n')
 else:
     pass
 f = open(args.input, 'a')
