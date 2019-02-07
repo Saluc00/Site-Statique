@@ -51,4 +51,5 @@ elif args.input and args.output:
 else:
     pass
 f = open(args.input, 'a')
+# Appel de la fonction qui convertit le fichié demandé
 convert(args.input, args.output)
