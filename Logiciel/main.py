@@ -1,6 +1,5 @@
 import argparse
 import markdown2
-import os
 import re
 
 # Detecte s'il y a la présence d'une URL
@@ -30,7 +29,7 @@ def convert(md_input, html_output):
 print('''                                                                                                
            ,,                                                   ,,                              
  .M"""bgd  db   mm                .M"""bgd mm            mm     db                              
-,MI    "Y       MM               ,MI    "Y MM            MM                                     
+,MI    "Y       MM               ,MI    "Y MM            MM                        s             
 `MMb.    `7MM mmMMmm .gP"Ya      `MMb.   mmMMmm  ,6"Yb.mmMMmm `7MM  ,dW"Yvd `7MM  `7MM  .gP"Ya  
   `YMMNq.  MM   MM  ,M'   Yb       `YMMNq. MM   8)   MM  MM     MM ,W'   MM   MM    MM ,M'   Yb 
 .     `MM  MM   MM  8M""""""     .     `MM MM    ,pm9MM  MM     MM 8M    MM   MM    MM 8M"""""" 

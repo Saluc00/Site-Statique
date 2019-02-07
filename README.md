@@ -1,6 +1,6 @@
 # Générateur de site statique
 
-Projet en cours de développement..
+Projet stable et prêt à l'utilisation.
 
 ## Sommaire
 
@@ -9,14 +9,14 @@ Projet en cours de développement..
 
 ## Présentation du projet
 
-Réalisation d'un outil convertissant un dossier de fichiers *markdown* et d'images en un autre dossier contenant les fichiers d'un site statique.
+Réalisation d'un outil convertissant des fichiers ***markdown*** contenant texte, images, lien en un fichier ***HTML*** lu les navigateurs.
 
 ## Utilisation
 
 Actuellement, le générateur de site statique à pour seule fonction de convertir un fichier *Markdown* en un fichier *html* lisible par votre navigateur.
 
-Pour cela, ouvrer dans un **CLI** *(Une invite de commande)*.
-Ouvrez le fichier `commande.py` suivi de `-i ./Fichier.md -u ./Fichier.html`.
+Pour cela, ouvrez dans un **CLI** *(Une invite de commande)*.
+Ouvrez le fichier `main.py` suivi de `-i ./Fichier.md -u ./Fichier.html`.
 
 **Il traduira votre mardown dans le fichier `mardown.md` en htlm dans le fichier que vous aurez choisi.**
 
