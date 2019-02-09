@@ -1,6 +1,8 @@
 import argparse
 import markdown2
 import re
+import os
+from os.path import splitext
 
 # Detecte s'il y a la présence d'une URL
 link_patterns=[(re.compile(r'((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+(:[0-9]+)?|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)'),r'\1')]
@@ -11,19 +13,21 @@ finHead = "</body>\n</html>"
 
 def convert(md_input, html_output):
     # Ouvre le fichier .md
-    input_file = open(md_input, "r")
-    html = markdown2.markdown(input_file.read(), extras=["link-patterns"] ,link_patterns=link_patterns)
-    # Genere / Modifie le fichier html
-    if '.html' in html_output:
-        html_file = open(html_output, 'w')
-    if '.html' not in html_output:
-        html_file = open(f'{html_output}.html', 'w')
-    # Ecrit le debut du head
-    html_file.write(head)
-    # Ecrit le fichier .md converti
-    html_file.write(html)
-    #Ecrit les denieres balises (</body> et </html>)
-    html_file.write(finHead)
+    malist = os.listdir(f'./'+md_input)
+    for i in malist:
+        f = open(f'./{md_input}/{i}', "r")
+        html = markdown2.markdown(f.read(), extras=["link-patterns"] ,link_patterns=link_patterns)
+        nomFichier = os.path.splitext(i)[0]
+        # Affiche que tel fichier est bien convertie ! :D
+        print(f'Le fichier "{nomFichier}" à bien été convertie !')
+        # Genere / Modifie le fichier html
+        html_file = open(f'./{html_output}/{nomFichier}.html', 'w')
+        # Ecrit le debut du head
+        html_file.write(head)
+        # Ecrit le fichier .md convertie
+        html_file.write(html)
+        #Ecrit les denieres balises (</body> et </html>)
+        html_file.write(finHead)
 
 # Element graphique sympa :D
 print('''                                                                                                
@@ -39,17 +43,15 @@ P"Ybmmd" .JMML. `Mbmo`Mbmmd'     P"Ybmmd"  `Mbmo`Moo9^Yo.`Mbmo.JMML.`MbmdMM   `M
                                                                        .JMML.                   
 ''')
 print('Bienvenue sur l\'invite de commande du generateur de site statique.\nVeuillez entrer -i [FICHIER .MD] -u [FICHIER HTML] !\n\n')
+    
 parser = argparse.ArgumentParser()
+
 # Création des commandes du CLI
 parser.add_argument("-i", '--input',help='Inserer le chemin du fichier .md')
 parser.add_argument("-u", '--output',help='Inserer le chemin du fichier .html')
 args = parser.parse_args()
-if False:
-    print('Merci d"inscrire "-i [VOTRE FICHIER .MD] -u [NOM DU FICHIER HTML]"')
-elif args.input and args.output:
-    print('Confirmation de la conversion du fichier : ' + args.input + ' Markdown en fichier html : ' + args.output + '\n\n\n')
-else:
-    pass
-f = open(args.input, 'a')
+
+print(f'Confirmation de la conversion de l\'intégrité des fichiers de "{args.input}" en fichiers html dans "{args.output}" \n\n')
+
 # Appel de la fonction qui convertit le fichié demandé
 convert(args.input, args.output)
